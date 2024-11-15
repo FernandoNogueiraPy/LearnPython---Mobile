@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, ImageBackground, Image } from 'react-native';
+
+import { View, Text, TextInput, TouchableOpacity, Image, ImageBackground } from 'react-native';
+
 import AsyncStorage from '@react-native-async-storage/async-storage';  // Importando o AsyncStorage
-import style from './style';
+import styles from './styles';
+
+
 
 const LoginScreen = ({ navigation }) => {
     const [email, setEmail] = useState('');
@@ -45,35 +49,59 @@ const LoginScreen = ({ navigation }) => {
     };
 
     return (
-        <View style={style.container}>
-            <ImageBackground source={require('./images/image.png')} style={style.background} resizeMode="cover" />
-            <Image source={require('./images/logo.png')} style={style.logo} resizeMode="contain" />
+        <View style={styles.container}>
+            <ImageBackground source={require('./images/image.png')} style={styles.background} resizeMode="cover">
+                <Image source={require('./images/logo.png')} style={styles.logo} resizeMode="contain" />
 
-            <Text style={style.text_login}>Login</Text>
+                <Text style={styles.text_login}>Login</Text>
 
-            {isLoading && <Text>Loading...</Text>}
+                {isLoading && <Text>Loading...</Text>}
 
-            <TextInput
-                style={style.input}
-                placeholder="Email ou nickname"
-                value={email}
-                onChangeText={setEmail}
-                keyboardType="email-address"
-                autoCapitalize="none"
-            />
-            <Text style={style.text_senha}>Senha</Text>
-            <TextInput
-                style={style.input}
-                placeholder="Senha de acesso"
-                value={password}
-                onChangeText={setPassword}
-                secureTextEntry={true}
-            />
+                <View style={styles.inputContainer}>
+                    <Text style={styles.label}>E-mail</Text>
+                    <TextInput
+                        style={styles.input}
+                        placeholder="Endereço de E-mail"
+                        value={email}
+                        onChangeText={setEmail}
+                        keyboardType="email-address"
+                        autoCapitalize="none"
+                        placeholderTextColor="#D3D3D3"
+                    />
+                </View>
 
-            {error && <Text style={{ color: 'red' }}>{error}</Text>}
-            <Button style={style.button} title="Login" onPress={handleLogin} />
+                <View style={styles.inputContainer}>
+                    <Text style={styles.label}>Senha</Text>
+                    <TextInput
+                        style={styles.input}
+                        placeholder="Senha"
+                        value={password}
+                        onChangeText={setPassword}
+                        secureTextEntry={true}
+                        placeholderTextColor="#D3D3D3"
+                    />
+                </View>
+
+                {error && <Text style={styles.error}>{error}</Text>}
+
+                <View style={styles.rememberContainer}>
+
+                    <TouchableOpacity onPress={() => navigation.navigate('PasswordRecovery')}>
+                        <Text style={styles.forgotPassword}>Esqueceu a senha?</Text>
+                    </TouchableOpacity>
+                </View>
+
+                <TouchableOpacity style={styles.button} onPress={handleLogin}>
+                    <Text style={styles.buttonText}>Login</Text>
+                </TouchableOpacity>
+
+                <Text style={styles.registerPrompt}>
+                    Ainda não possui conta? <Text style={styles.registerLink} onPress={() => navigation.navigate("Register")}>Criar conta</Text>
+                </Text>
+            </ImageBackground>
         </View>
     );
-};
+}
+
 
 export default LoginScreen;

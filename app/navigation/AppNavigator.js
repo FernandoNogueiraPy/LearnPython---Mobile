@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from '../screens/Home';
 import ProfileScreen from '../screens/Profile';
+import RegisterScreen from '../screens/Register';
+import PasswordRecoveryScreen from '../screens/PasswordRecovery';
 import LoginScreen from '../screens/login';
 import SplashScreen from '../screens/splash';
 import { StatusBar } from 'react-native';
@@ -26,18 +27,16 @@ const AppNavigator = () => {
         return <SplashScreen />;
     }
 
-    const StackScreen = () => (
-        <MainStack.Navigator screenOptions={{ headerShown: false }}>
-            <MainStack.Screen name="Login" component={LoginScreen} />
-            <MainStack.Screen name="Home" component={HomeScreen} />
-        </MainStack.Navigator>
-    );
-
     return (
-        <NavigationContainer>
-            <StatusBar hidden={true} />
-            <StackScreen />
-        </NavigationContainer>
+        <>
+            <StatusBar hidden={false} />
+            <MainStack.Navigator screenOptions={{ headerShown: false }}>
+                <MainStack.Screen name="Login" component={LoginScreen} />
+                <MainStack.Screen name="Register" component={RegisterScreen} />
+                <MainStack.Screen name="PasswordRecovery" component={PasswordRecoveryScreen} />
+                <MainStack.Screen name="Home" component={HomeScreen} />
+            </MainStack.Navigator>
+        </>
     );
 };
 
