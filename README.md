@@ -3,7 +3,7 @@ Esse repositório é a parte da criação mobile do app LearnPython.
 
  Nessa primeira versão o app contará com :
 
- Tela de Login
+ Tela de Login\n
  Tela de Registro
  Tela de Recuperação de Senha
  Tela de Perfil
