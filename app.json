@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "IdeaFlow",
-    "slug": "IdeaFlow",
+    "name": "LearnPython",
+    "slug": "LearnPython",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
