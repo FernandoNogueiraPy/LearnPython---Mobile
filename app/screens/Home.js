@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, ImageBackground, TouchableOpacity } from 'react-native';
+import { View, Text, ImageBackground, TouchableOpacity, Alert } from 'react-native';
 import { StyleSheet } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -11,6 +11,13 @@ import ProfileScreen from './Profile';
 
 const Tab = createBottomTabNavigator();
 
+const showBlockedMessage = () => {
+    Alert.alert(
+        'Tela Indisponível',
+        'Olá Pythonista, essa tela ainda não está disponível, mas que tal afiar suas habilidades no modo Ranking?',
+        [{ text: 'OK' }]
+    );
+};
 
 const HomeScreen = ({ navigation }) => (
     <ImageBackground source={require('./images/learn_python.png')} style={styles.background} resizeMode="cover">
@@ -114,18 +121,27 @@ export default function App() {
 
             <Tab.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
 
-            <Tab.Screen
-                name="Map"
-                component={MapScreen}
-                options={{
-                    tabBarButton: (props) => (
-                        <TouchableOpacity {...props} onPress={() => showBlockedMessage()} />
-                    ),
-                }}
+
+            <Tab.Screen name="Map" component={MapScreen} options={{
+                tabBarButton: (props) => (
+                    <TouchableOpacity {...props} onPress={() => showBlockedMessage()} />
+                ),
+            }}
             />
 
-            <Tab.Screen name="Stats" component={StatsScreen} options={{ headerShown: false }} />
-            <Tab.Screen name="Profile" component={ProfileScreen} options={{ headerShown: false }} />
+            <Tab.Screen name="Stats" component={StatsScreen} options={{
+                tabBarButton: (props) => (
+                    <TouchableOpacity {...props} onPress={() => showBlockedMessage()} />
+                ),
+            }} />
+
+            <Tab.Screen name="Profile" component={ProfileScreen} options={{
+                tabBarButton: (props) => (
+                    <TouchableOpacity {...props} onPress={() => showBlockedMessage()} />
+                ),
+            }} />
+
+
         </Tab.Navigator>
 
     );
@@ -157,20 +173,21 @@ const styles = StyleSheet.create({
 
     rectangle_historia: {
         backgroundColor: 'gray',
-        height: 150,
+        height: 200,
         width: '90%',
-        marginTop: 50,
+        marginTop: 20,
         marginLeft: 15,
         borderRadius: 10,
         justifyContent: 'center',
         alignItems: 'center',
+        overflow: 'hidden',
     },
 
     rectangle_rank: {
         backgroundColor: 'gray',
-        height: 150,
+        height: 200,
         width: '90%',
-        marginTop: 50,
+        marginTop: 20,
         marginLeft: 15,
         borderRadius: 10,
         justifyContent: 'center',
@@ -183,7 +200,7 @@ const styles = StyleSheet.create({
         height: 520,
         backgroundColor: 'white',
         borderRadius: 10,
-        marginTop: 50,
+        marginTop: 30,
     },
 
     imagePrincipal: {
