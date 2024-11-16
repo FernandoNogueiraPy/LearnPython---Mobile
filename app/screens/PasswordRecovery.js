@@ -10,6 +10,12 @@ export default function PasswordRecoveryScreen({ navigation }) {
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
 
+    const handleChangeText = (text, index) => {
+        const updatedCode = code.split(''); // Transforma o código atual em um array
+        updatedCode[index] = text; // Substitui o caractere na posição correta
+        setCode(updatedCode.join('')); // Atualiza o estado com o código atualizado
+    };
+
 
     const handleSendEmail = async () => {
         setIsLoading(true);
@@ -145,7 +151,8 @@ export default function PasswordRecoveryScreen({ navigation }) {
                                     style={styles.codeInput}
                                     maxLength={1}
                                     keyboardType="default"
-                                    onChangeText={(text) => setCode(code + text)} // Adiciona cada número ao código
+                                    onChangeText={(text) => handleChangeText(text, index)} // Atualiza o código com o valor correto
+                                    value={code[index] || ''} // Exibe o valor digitado
                                 />
                             ))}
                         </View>

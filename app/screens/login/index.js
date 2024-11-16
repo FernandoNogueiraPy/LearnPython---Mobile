@@ -35,8 +35,13 @@ const LoginScreen = ({ navigation }) => {
             }
 
             const data = await response.json();
+
             const token = data.access_token;
+            const player_id = data.player_id;
+
             await AsyncStorage.setItem('userToken', token);
+            await AsyncStorage.setItem('userId', player_id);
+
             navigation.navigate('Home');
 
 

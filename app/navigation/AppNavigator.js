@@ -6,6 +6,9 @@ import RegisterScreen from '../screens/Register';
 import PasswordRecoveryScreen from '../screens/PasswordRecovery';
 import LoginScreen from '../screens/login';
 import SplashScreen from '../screens/splash';
+import GameScreen from '../screens/Game';
+import MapScreen from '../screens/Map';
+import StatsScreen from '../screens/Stats';
 import { StatusBar } from 'react-native';
 
 const MainStack = createStackNavigator();
@@ -35,6 +38,10 @@ const AppNavigator = () => {
                 <MainStack.Screen name="Register" component={RegisterScreen} />
                 <MainStack.Screen name="PasswordRecovery" component={PasswordRecoveryScreen} />
                 <MainStack.Screen name="Home" component={HomeScreen} />
+                <MainStack.Screen name="Game" component={GameScreen} />
+                <MainStack.Screen name="Profile" component={ProfileScreen} />
+                <MainStack.Screen name="Map" component={MapScreen} />
+                <MainStack.Screen name="Stats" component={StatsScreen} />
             </MainStack.Navigator>
         </>
     );
